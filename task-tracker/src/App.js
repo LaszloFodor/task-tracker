@@ -78,7 +78,7 @@ function App() {
         <Route
           path='/'
           exact
-          render={(props) => (
+          render={() => (
             <>
               {showAddTask && <AddTask onAdd={addTask} />}
               {tasks.length > 0 ? (
