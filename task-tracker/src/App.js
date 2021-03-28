@@ -39,9 +39,6 @@ function App() {
     })
     const data = await res.json()
     setTasks([...tasks, data])
-    //const id = Math.floor(Math.random() * 10000) + 1
-    //const newTask = { id, ...task }
-    //setTasks([...tasks, newTask])
   }
 
   // Delete task
@@ -77,20 +74,26 @@ function App() {
           onAdd={() => setShowAddTask(!showAddTask)}
           showAdd={showAddTask}
         />
-        {showAddTask && <AddTask onAdd={addTask} />}
-        {tasks.length > 0 ? (
-          <Tasks
-            tasks={tasks}
-            onDelete={deleteTask}
-            onToggle={toggleReminder}
-          />
-        ) : (
-          'You have no tasks'
-        )}
-        {/* <Route path='/' exact render={(props) => {
-          <></>
-        }} />
-        <Route path='/about' component={About} /> */}
+
+        <Route
+          path='/'
+          exact
+          render={(props) => (
+            <>
+              {showAddTask && <AddTask onAdd={addTask} />}
+              {tasks.length > 0 ? (
+                <Tasks
+                  tasks={tasks}
+                  onDelete={deleteTask}
+                  onToggle={toggleReminder}
+                />
+              ) : (
+                'You have no tasks'
+              )}
+            </>
+          )}
+        />
+        <Route path='/about' component={About} />
         <Footer />
       </div>
     </Router>
